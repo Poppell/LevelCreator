@@ -146,6 +146,7 @@ public class UI extends JFrame {
             writer.write();
         }else{
             System.out.println("Dateiname!");
+            JOptionPane.showMessageDialog(null,"Gib einen Dateinamen an!");
         }
     }
 
