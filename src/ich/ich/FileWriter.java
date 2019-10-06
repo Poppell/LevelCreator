@@ -20,7 +20,8 @@ public class FileWriter {
             writer = new BufferedWriter(new java.io.FileWriter(this.filename));
             lines.forEach(line -> {
                 try {
-                    writer.append(String.join(";",line.split("")));
+                    // Todo: ' wirklich notwendig? In Spiel testen.
+                    writer.append("'" + String.join("';'",line.split("")) + "'");
                     writer.append("\n");
                 } catch (IOException e) {
                     e.printStackTrace();
