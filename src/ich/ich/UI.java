@@ -61,7 +61,7 @@ public class UI extends JFrame {
 
 
         buttons = new JButton[this.rows][this.columns];
-        makeButtons();
+        init();
 
         controlpanel = new JPanel();
     //    controlpanel.setVisible(true);
@@ -95,7 +95,7 @@ public class UI extends JFrame {
         return path;
     }
 
-    private void makeButtons(){
+    private void init(){
         for(int i = 0; i < buttons.length; i++){
             for(int j = 0; j < buttons[0].length;j++){
                 final int x = i;
@@ -106,9 +106,10 @@ public class UI extends JFrame {
                     buttons[x][y].setIcon(new ImageIcon(activeToPath(this.active)));
                     level[x][y] = this.active;
                 });
-               /* buttons[i][j].setBorder(BorderFactory.createEmptyBorder());
-                buttons[i][j].setContentAreaFilled(false);*/
+                buttons[i][j].setBackground(Color.WHITE);
                this.buttonspanel.add( buttons[i][j]);
+
+               level[i][j]= ' ';
             }
         }
     }
@@ -133,19 +134,19 @@ public class UI extends JFrame {
         controlpanel.add(area);
 
         btnsave = new JButton("Save");
-        btnsave.addActionListener(e -> {for(char[] item: level){
-            for(char charitem: item){
-                if(charitem == '\u0000'){
-                    charitem = ' ';
-                }
-                System.out.print(charitem);
-            }
-            System.out.println("");
-
-            }
-        });
+        btnsave.addActionListener(e -> writeFile());
         controlpanel.add(btnsave);
 
+    }
+
+    private void writeFile(){
+        if(  area.getText().length() > 0 ) {
+            final ArrayList<String> temp = this.getLevel();
+            writer = new FileWriter(area.getText() + ".csv", temp);
+            writer.write();
+        }else{
+            System.out.println("Dateiname!");
+        }
     }
 
     public ArrayList<String> getLevel(){
