@@ -15,7 +15,6 @@ Neue Buttons für Feldarten in addControl() der Klasse UI hinzufügen.
 
 
 TODO:
-- Überprüfung, ob Datei überschrieben wird.
 - Prüfen, ob extra ' Notwendig sind.
 
  optional:

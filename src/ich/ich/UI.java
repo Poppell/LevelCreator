@@ -2,6 +2,7 @@ package ich.ich;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 import java.util.ArrayList;
 
 public class UI extends JFrame {
@@ -141,9 +142,18 @@ public class UI extends JFrame {
 
     private void writeFile(){
         if(  area.getText().length() > 0 ) {
-            final ArrayList<String> temp = this.getLevel();
-            writer = new FileWriter(area.getText() + ".csv", temp);
-            writer.write();
+            File file = new File(area.getText()+ ".csv");
+            int writefile = 0;
+            if(file.exists()){
+              writefile =  JOptionPane.showConfirmDialog(null, "Datei überschreiben?");
+
+            }
+            if(writefile == 0){
+                final ArrayList<String> temp = this.getLevel();
+                writer = new FileWriter(area.getText() + ".csv", temp);
+                writer.write();
+            }
+
         }else{
             System.out.println("Dateiname!");
             JOptionPane.showMessageDialog(null,"Gib einen Dateinamen an!");

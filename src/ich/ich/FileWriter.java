@@ -1,6 +1,8 @@
 package ich.ich;
 
+import javax.swing.*;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -16,21 +18,23 @@ public class FileWriter {
     }
 
     public void write(){
-        try {
-            writer = new BufferedWriter(new java.io.FileWriter(this.filename));
-            lines.forEach(line -> {
-                try {
-                    // Todo: ' wirklich notwendig? In Spiel testen.
-                    writer.append("'" + String.join("';'",line.split("")) + "'");
-                    writer.append("\n");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            });
-            writer.flush();
-            writer.close();
-        }catch (IOException iox){
-            iox.printStackTrace();
-        }
+            try {
+
+                writer = new BufferedWriter(new java.io.FileWriter(this.filename));
+                lines.forEach(line -> {
+                    try {
+                        // Todo: ' wirklich notwendig? In Spiel testen.
+                        writer.append("'" + String.join("';'", line.split("")) + "'");
+                        writer.append("\n");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
+                writer.flush();
+                writer.close();
+            } catch (IOException iox) {
+                iox.printStackTrace();
+            }
+
     }
 }
