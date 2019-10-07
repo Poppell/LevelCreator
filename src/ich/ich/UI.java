@@ -35,7 +35,7 @@ public class UI extends JFrame {
     int rows;
     int columns;
 
-    public UI(int rows, int columns){
+    public UI(int columns, int rows){
         super();
         this.rows = rows;
         this.columns = columns;
@@ -46,11 +46,11 @@ public class UI extends JFrame {
 
         this.buttonspanel = new JPanel();
 
-        this.setSize(this.rows * this.buttonsize,this.columns * this.buttonsize + 100);
+        this.setSize(this.columns * this.buttonsize,this.rows * this.buttonsize + 100);
         this.outerlayout = new BorderLayout();
         this.tilelayout = new GridLayout();
-        tilelayout.setColumns(rows);
-        tilelayout.setRows(columns);
+        tilelayout.setColumns(columns);
+        tilelayout.setRows(rows);
 
         this.buttonspanel.setLayout(tilelayout);
 
